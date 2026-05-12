@@ -41,11 +41,16 @@ def login():
 
 
 # --- Servir frontend web ---
+# Sirve index_runtime.html (con IP inyectada) si existe, sino index.html
 
 @app.route("/")
 def index():
-    return send_from_directory(".", "index.html")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    runtime = os.path.join(base_dir, "index_runtime.html")
+    if os.path.exists(runtime):
+        return send_from_directory(base_dir, "index_runtime.html")
+    return send_from_directory(base_dir, "index.html")
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(host="0.0.0.0", debug=False, port=5001)
