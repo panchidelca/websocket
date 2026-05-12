@@ -2,4 +2,4 @@ chat.db
 index_runtime.html
 venv/
 __pycache__/
-*.pyc
+*.pycchat.db
